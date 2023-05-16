@@ -1,0 +1,34 @@
+Instructions:
+
+1.- Build the user_id string. 
+
+	1.1 Retrieve the username and password
+	1.2 encode to base 64 the following string: username:password
+	
+	example: YWxiZXJ0b0BleGFtcGxlLmNvbToxMjM0NTY3OA
+			 alberto@example.com:12345678
+
+2.- Request a JSON Web token to the following endpoint using the user id:
+	
+	http://IP_address:8080/login/user_id
+	
+	2.1- Replace the user_id and IP of the environment where the application will be deployed to.
+	
+	Example:	
+	http://10.4.0.235:8080/login/YWxiZXJ0b0BleGFtcGxlLmNvbToxMjM0NTY3OA
+	
+	The response will be as follow:
+	
+	"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODQyMDAzNzksImp0aSI6Ijk4MGIwYTUzLTFhMTYtNDM3Zi05ODA4LTFiMTVkOGM0NDc0ZiIsInBheWxvYWQiOnsiZGF0YSI6IllXeGlaWEowYjBCbGVHRnRjR3hsTG1OdmJUb3hNak0wTlRZM09BIiwiZGF0ZSI6IjIwMjMtMDUtMTUifX0.3kp--Lsu0gD8qwQdmMSqmMwMURZ0h_4BJt7fkEUXQdrSiTYSSAm152urWvnfYnU3XlLbaN7SOS4HYPDUTngFcw"
+	
+3.- To validate the response, please submit a request to the following endpoint:
+
+	http://IP_address:8080/validate/eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODQyMDAzNzksImp0aSI6Ijk4MGIwYTUzLTFhMTYtNDM3Zi05ODA4LTFiMTVkOGM0NDc0ZiIsInBheWxvYWQiOnsiZGF0YSI6IllXeGlaWEowYjBCbGVHRnRjR3hsTG1OdmJUb3hNak0wTlRZM09BIiwiZGF0ZSI6IjIwMjMtMDUtMTUifX0.3kp--Lsu0gD8qwQdmMSqmMwMURZ0h_4BJt7fkEUXQdrSiTYSSAm152urWvnfYnU3XlLbaN7SOS4HYPDUTngFcw
+	
+	2.1- Replace the IP of the environment where the application will be deployed to.
+	
+	Example:		http://10.4.0.235:8080/validate/eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODQyMDAzNzksImp0aSI6Ijk4MGIwYTUzLTFhMTYtNDM3Zi05ODA4LTFiMTVkOGM0NDc0ZiIsInBheWxvYWQiOnsiZGF0YSI6IllXeGlaWEowYjBCbGVHRnRjR3hsTG1OdmJUb3hNak0wTlRZM09BIiwiZGF0ZSI6IjIwMjMtMDUtMTUifX0.3kp--Lsu0gD8qwQdmMSqmMwMURZ0h_4BJt7fkEUXQdrSiTYSSAm152urWvnfYnU3XlLbaN7SOS4HYPDUTngFcw
+	
+	The response will be as follow:
+	
+	{"iat":1684200379,"jti":"980b0a53-1a16-437f-9808-1b15d8c4474f","payload":{"data":"YWxiZXJ0b0BleGFtcGxlLmNvbToxMjM0NTY3OA","date":"2023-05-15"}}
