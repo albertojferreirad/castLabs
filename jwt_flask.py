@@ -39,7 +39,7 @@ def login(user_id):
 
     encrypted_token = jwt_token.decode('utf-8')
     # Return the JWT as a JSON response
-    return jsonify({'toekn': encrypted_token})
+    return jsonify({'token': encrypted_token})
 
 
 @app.route('/validate/<token>')
