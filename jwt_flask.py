@@ -37,9 +37,8 @@ def login(user_id):
     # Generate the JWT
     jwt_token = jwt.encode(data, app.config['SECRET_KEY'], algorithm='HS512')
 
-    encrypted_token = jwt_token.decode('utf-8')
     # Return the JWT as a JSON response
-    return jsonify({'token': encrypted_token})
+    return jsonify({'token': jwt_token})
 
 
 @app.route('/validate/<token>')
