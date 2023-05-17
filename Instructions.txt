@@ -3,7 +3,7 @@ Instructions:
 1.- Build the user_id string. 
 
 	1.1 Retrieve the username and password
-	1.2 encode to base 64 the following string: username:password
+	1.2 Encode to base 64 the following string: username:password
 	
 	example: YWxiZXJ0b0BleGFtcGxlLmNvbToxMjM0NTY3OA
 			 alberto@example.com:12345678
